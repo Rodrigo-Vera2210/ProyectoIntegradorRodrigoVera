@@ -1,6 +1,6 @@
 const Search = () => {
     return(
-        <div className="d-flex justify-content-around">
+        <div className="d-flex justify-content-around py-5">
             <div className="input-group w-50">
                 <input type="text" className="form-control" placeholder="Buscar producto..." />
                 <button className="btn btn-outline-warning">Buscar</button>

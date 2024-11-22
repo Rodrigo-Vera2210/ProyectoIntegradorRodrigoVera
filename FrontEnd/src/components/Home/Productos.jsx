@@ -1,6 +1,6 @@
 import RecommendCard from "./RecommendCard"
 
-const Recommend = () => {
+const Productos = () => {
     const carros = [
         {
             id:0,
@@ -49,7 +49,7 @@ const Recommend = () => {
 
     return (
         <div className="p-5 text-center bg-info-subtle">
-            <h1 className="text-warning pb-5">Recomendados</h1>
+            <h1 className="text-warning pb-5">Productos</h1>
             <div className="d-flex flex-wrap gap-5 justify-content-center">
                 {
                     carros && carros.map((carro)=>{
@@ -61,4 +61,4 @@ const Recommend = () => {
     )
 }
 
-export default Recommend
+export default Productos
