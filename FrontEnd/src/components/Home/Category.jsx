@@ -30,7 +30,7 @@ function Category() {
     
     return (
         <div className="text-center p-5 bg-dark">
-            <h1 className="pb-5 text-warning">Buscar carros por tipo de categrías</h1>
+            <h1 className="pb-5 text-warning">Buscar carros por tipo de categorías</h1>
             <div className="container d-flex flex-wrap gap-4 text-center">
                 { categorias && categorias.map((categoria) => {
                     return (
