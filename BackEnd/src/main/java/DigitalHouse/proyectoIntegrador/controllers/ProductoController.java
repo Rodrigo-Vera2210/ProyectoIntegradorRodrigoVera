@@ -1,9 +1,11 @@
 package DigitalHouse.proyectoIntegrador.controllers;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import DigitalHouse.proyectoIntegrador.entity.Categoria;
 import DigitalHouse.proyectoIntegrador.entity.Producto;
+import DigitalHouse.proyectoIntegrador.models.Request.ProductoRequest;
 import DigitalHouse.proyectoIntegrador.services.ProductoService;
 
 
@@ -28,8 +32,8 @@ public class ProductoController {
     private ProductoService productoService;
     
     @PostMapping
-    public ResponseEntity<Producto> guardarProducto(@RequestBody Producto producto) {
-        return ResponseEntity.ok(productoService.guardarProducto(producto));
+    public ResponseEntity<Producto> guardarProducto(@RequestBody ProductoRequest productoRequest) throws ParseException {
+        return ResponseEntity.ok(productoService.guardarProducto(productoRequest));
     }
 
     @GetMapping("/{id}")
@@ -56,8 +60,10 @@ public class ProductoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Producto>> getProductos() {
-        var productos =  productoService.buscarTodos();
+    public ResponseEntity<Page<Producto>> getProductos(@RequestParam(required=false) String page, @RequestParam(required=false) String pageSize) {
+        if(page == null) page = "1";
+        if(pageSize == null) pageSize = "5";
+        var productos =  productoService.buscarTodos(Integer.parseInt(page),Integer.parseInt(pageSize));
         if(!productos.isEmpty()){
             return ResponseEntity.ok(productos);
         }
@@ -75,13 +81,13 @@ public class ProductoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable Long id) throws Exception{
-        if(productoService.buscarProducto(id).isPresent()){
-            productoService.eliminarProducto(id);
+        Optional<Producto> producto = productoService.buscarProducto(id);
+        if(producto.isPresent()){
+            productoService.eliminarProducto(producto.get());
             return ResponseEntity.ok().body("Se elimino con exito");
         }
         throw new Exception("Producto con id " + id + "no encontrado");
     }
-    
     
     
 }

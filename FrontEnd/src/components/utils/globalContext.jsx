@@ -20,7 +20,7 @@ export const ContextProvider = ({ children }) => {
     useEffect(() => {
         axios.get(url+'producto').then((res)=>{
             setProductos(res.data)
-            dispatch({ type: "GET_PRODUCTOS", payload: res.data})
+            dispatch({ type: "GET_PRODUCTOS", payload: res.data.content})
         })
     },[])
 

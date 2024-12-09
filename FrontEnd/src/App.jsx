@@ -5,6 +5,7 @@ import Home from './routes/Home'
 import AgregarProducto from './routes/AgregarProducto'
 import DetalleProducto from './routes/DetalleProducto'
 import { useProductosStates } from './components/utils/globalContext'
+import ListaProductos from './routes/ListaProductos'
 
 function App() {
   const { state } = useProductosStates()
@@ -14,8 +15,9 @@ function App() {
       <main className='bg-secondary z-0 bg-opacity-25'>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/agregar-producto" element={<AgregarProducto/>}/>
-          <Route path="/producto/:id" element={<DetalleProducto/>}/>
+          <Route path="admin/agregar-producto" element={<AgregarProducto/>}/>
+          <Route path="producto/:id" element={<DetalleProducto/>}/>
+          <Route path="admin/productos" element={<ListaProductos/>}/>
         </Routes>
       </main>
     </div>

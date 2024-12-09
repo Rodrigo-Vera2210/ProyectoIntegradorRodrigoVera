@@ -1,32 +1,37 @@
+import { useState } from "react"
+import { useProductosStates } from "../utils/globalContext"
 import CategoryCard from "./CategoryCard"
 
-const categorias =
-[
-    {
-    nombre: 'Todo Terreno',
-    descripcion: 'Juanes',
-    img: 'https://autoland.com.pe/wp-content/uploads/2024/01/Suzuki-Jimny-autoland.jpg'
-    },
-    {
-    nombre: 'Deportivo',
-    descripcion: 'Marco',
-    img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
-    },
-    {
-    nombre: 'Deportivo',
-    descripcion: 'Marco',
-    img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
-    },
-    {
-    nombre: 'Deportivo',
-    descripcion: 'Marco',
-    img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
-    }
+// const categorias =
+// [
+//     {
+//     nombre: 'Todo Terreno',
+//     descripcion: 'Juanes',
+//     img: 'https://autoland.com.pe/wp-content/uploads/2024/01/Suzuki-Jimny-autoland.jpg'
+//     },
+//     {
+//     nombre: 'Deportivo',
+//     descripcion: 'Marco',
+//     img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
+//     },
+//     {
+//     nombre: 'Deportivo',
+//     descripcion: 'Marco',
+//     img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
+//     },
+//     {
+//     nombre: 'Deportivo',
+//     descripcion: 'Marco',
+//     img: 'https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/4:3/w_2248,h_1686,c_limit/bugatti.jpg'
+//     }
 
-]
+// ]
 
 
 function Category() {
+    const {state} = useProductosStates()
+
+    const [categorias, setCategorias] = useState(state && state.categorias)
     
     return (
         <div className="text-center p-5 bg-dark">
